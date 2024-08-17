@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'MoneyTracker',
     'Purchases',
+    'Accounts',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'MoneyTracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +130,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT= os.path.join(BASE_DIR,"media/")
+
+
+
+# Authentication settings
+LOGIN_URL = 'Login'
+LOGIN_REDIRECT_URL = 'Home'  # where to redirect users after login
+LOGOUT_REDIRECT_URL = 'Login'  # where to redirect users after logout

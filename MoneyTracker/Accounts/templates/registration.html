@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+<!-- @W_Farmer -->
+<!-- The main registration page -->
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Register</h2>
+            <form method="POST">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

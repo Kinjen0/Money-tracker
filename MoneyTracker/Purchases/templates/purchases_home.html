@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Add Purchase Form -->
+  <h2>Add Purchase</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ purchase_form.as_p }}
+    <button type="submit" name="purchase_form">Add Purchase</button>
+  </form>
+
+  <!-- Create Category Form -->
+  <h2>Create Category</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ category_form.as_p }}
+    <button type="submit" name="category_form">Add Category</button>
+  </form>
+
+  <!-- Search by Category Form -->
+  <h2>Filter by Category</h2>
+  <form method="get">
+    {{ filter_form.as_p }}
+    <button type="submit">Filter</button>
+  </form>
+
+  <!-- Display Purchases -->
+  <h2>Purchases</h2>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Description</th>
+    </tr>
+    {% for purchase in purchases %}
+      <tr>
+        <td>{{ purchase.date }}</td>
+        <td>
+            {% if purchase.category %}
+              {{ purchase.category.category_name }}
+            {% else %}
+              Uncategorized
+            {% endif %}
+        </td>        
+        <td>{{ purchase.amount }}</td>
+        <td>{{ purchase.description }}</td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="4">No purchases found.</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
